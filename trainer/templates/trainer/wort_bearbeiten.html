@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wort bearbeiten</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Wort bearbeiten</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Das Formular zeigt das zu bearbeitende Wort -->
+            <button type="submit" class="btn btn-primary">Speichern</button>
+        </form>
+        <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
+    </div>
+</body>
+</html>
