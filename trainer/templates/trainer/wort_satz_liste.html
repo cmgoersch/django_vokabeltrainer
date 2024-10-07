@@ -9,8 +9,18 @@
 </head>
 <body>
     <div class="container">
+
+        <!-- Titel der App -->
+        <h1>Annas Vokabeltrainer App</h1>
+
+        <!-- Buttons zum Hinzufügen eines neuen Wortes und Satzes -->
+        <div class="button-container">
+            <a href="{% url 'wort_hinzufuegen' %}" class="btn btn-primary">Neues Wort hinzufügen</a>
+            <a href="{% url 'satz_hinzufuegen' %}" class="btn btn-primary">Neuen Satz hinzufügen</a>
+        </div>
+
         <!-- Liste der Wörter -->
-        <h1>Liste der Wörter</h1>
+        <h2>Liste der Wörter</h2>
         <ul>
             {% for wort in wörter %}
                 <li>
@@ -23,13 +33,8 @@
 
                     <!-- Buttons -->
                     <div>
-                        <!-- Fragezeichen-Button -->
                         <button class="show-hint" onclick="toggleMerksatz('merksatz-{{ wort.id }}')">?</button>
-                        
-                        <!-- Bearbeiten-Button -->
                         <a href="{% url 'wort_bearbeiten' wort.id %}" class="btn btn-secondary">Bearbeiten</a>
-                        
-                        <!-- Löschen-Button -->
                         <form method="POST" action="{% url 'wort_loeschen' wort.id %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Löschen</button>
@@ -44,11 +49,8 @@
             {% endfor %}
         </ul>
 
-        <!-- Button zum Hinzufügen eines neuen Wortes -->
-        <a href="{% url 'wort_hinzufuegen' %}" class="btn btn-primary">Neues Wort hinzufügen</a>
-
         <!-- Liste der Sätze -->
-        <h1>Liste der Sätze</h1>
+        <h2>Liste der Sätze</h2>
         <ul>
             {% for satz in sätze %}
                 <li>
@@ -61,13 +63,8 @@
 
                     <!-- Buttons -->
                     <div>
-                        <!-- Fragezeichen-Button -->
                         <button class="show-hint" onclick="toggleMerksatz('merksatz-satz-{{ satz.id }}')">?</button>
-                        
-                        <!-- Bearbeiten-Button -->
                         <a href="{% url 'satz_bearbeiten' satz.id %}" class="btn btn-secondary">Bearbeiten</a>
-                        
-                        <!-- Löschen-Button -->
                         <form method="POST" action="{% url 'satz_loeschen' satz.id %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Löschen</button>
@@ -81,9 +78,6 @@
                 <li>Keine Sätze vorhanden.</li>
             {% endfor %}
         </ul>
-
-        <!-- Button zum Hinzufügen eines neuen Satzes -->
-        <a href="{% url 'satz_hinzufuegen' %}" class="btn btn-primary">Neuen Satz hinzufügen</a>
     </div>
 
     <footer>
