@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
+    {% load static %}  <!-- Hier das static-Tag laden -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vokabeltrainer</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Liste der Wörter</h1>
-    <ul>
-        {% for wort in wörter %}
-            <li>{{ wort.deutsch }} - {{ wort.finnisch }} (Kategorie: {{ wort.kategorie.name }})</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'wort_hinzufuegen' %}">Neues Wort hinzufügen</a>
+    <div class="container">
+        <h1>Liste der Wörter</h1>
+        <ul>
+            {% for wort in wörter %}
+                <li>{{ wort.deutsch }} - {{ wort.englisch }} (Kategorie: {{ wort.kategorie.name }})</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'wort_hinzufuegen' %}">Neues Wort hinzufügen</a>
+    </div>
+    <footer>
+        <p>© 2024 Vokabeltrainer</p>
+    </footer>
+    
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
