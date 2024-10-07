@@ -4,15 +4,15 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wort hinzufügen</title>
+    <title>Satz hinzufügen</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>Neues Wort hinzufügen</h1>
+        <h1>Neuen Satz hinzufügen</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.as_p }}  <!-- Zeigt auch die Kategorie und den Merksatz -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
     </div>

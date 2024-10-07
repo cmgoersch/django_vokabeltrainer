@@ -9,7 +9,17 @@ class Kategorie(models.Model):
 class Wort(models.Model):
     deutsch = models.CharField(max_length=100)
     finnisch = models.CharField(max_length=100)
-    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE, verbose_name="Wörter")
+    merksatz = models.TextField(null=True, blank=True)  # Merksatz als optionales Feld
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE, null=True, blank=True)  # Kategorie hinzugefügt
+
+    def __str__(self):
+        return f'{self.deutsch} - {self.finnisch}'
+
+class Satz(models.Model):
+    deutsch = models.CharField(max_length=255)
+    finnisch = models.CharField(max_length=255)
+    merksatz = models.TextField(null=True, blank=True)  # Merksatz als optionales Feld
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE, null=True, blank=True)  # Kategorie hinzugefügt
 
     def __str__(self):
         return f'{self.deutsch} - {self.finnisch}'

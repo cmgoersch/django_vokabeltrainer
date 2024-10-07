@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vokabeltrainer</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Liste der Wörter -->
+        <h1>Liste der Wörter</h1>
+        <ul>
+            {% for wort in wörter %}
+                <li>
+                    <div class="word-block">
+                        <strong>Deutsch:</strong> {{ wort.deutsch }}
+                        <button class="show-hint" onclick="toggleMerksatz('merksatz-{{ wort.id }}')">?</button>
+                    </div>
+                    <div class="word-block">
+                        <strong>Finnisch:</strong> {{ wort.finnisch }}
+                    </div>
+                    <p id="merksatz-{{ wort.id }}" class="merksatz" style="display:none;">Merksatz: {{ wort.merksatz }}</p>
+
+                    <!-- Löschen-Formular für das Wort -->
+                    <form method="POST" action="{% url 'wort_loeschen' wort.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Löschen</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li>Keine Wörter vorhanden.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Liste der Sätze -->
+        <h1>Liste der Sätze</h1>
+        <ul>
+            {% for satz in sätze %}
+                <li>
+                    <div class="word-block">
+                        <strong>Deutsch:</strong> {{ satz.deutsch }}
+                        <button class="show-hint" onclick="toggleMerksatz('merksatz-satz-{{ satz.id }}')">?</button>
+                    </div>
+                    <div class="word-block">
+                        <strong>Finnisch:</strong> {{ satz.finnisch }}
+                    </div>
+                    <p id="merksatz-satz-{{ satz.id }}" class="merksatz" style="display:none;">Merksatz: {{ satz.merksatz }}</p>
+
+                    <!-- Löschen-Formular für den Satz -->
+                    <form method="POST" action="{% url 'satz_loeschen' satz.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Löschen</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li>Keine Sätze vorhanden.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        function toggleMerksatz(id) {
+            var merksatzElement = document.getElementById(id);
+            if (merksatzElement.style.display === "none") {
+                merksatzElement.style.display = "block";
+            } else {
+                merksatzElement.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

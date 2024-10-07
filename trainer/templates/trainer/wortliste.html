@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    {% load static %}  <!-- Hier das static-Tag laden -->
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vokabeltrainer</title>
@@ -15,7 +15,15 @@
                 <li>{{ wort.deutsch }} - {{ wort.englisch }} (Kategorie: {{ wort.kategorie.name }})</li>
             {% endfor %}
         </ul>
-        <a href="{% url 'wort_hinzufuegen' %}">Neues Wort hinzufügen</a>
+
+        <h1>Liste der Sätze</h1>
+        <ul>
+            {% for satz in sätze %}
+                <li>{{ satz.deutsch }} - {{ satz.englisch }} (Kategorie: {{ satz.kategorie.name }})</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'wort_hinzufuegen' %}" class="btn btn-primary">Neues Wort hinzufügen</a>
     </div>
     <footer>
         <p>© 2024 Vokabeltrainer</p>
