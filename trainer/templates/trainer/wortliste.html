@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vokabeltrainer</title>
+</head>
+<body>
+    <h1>Liste der Wörter</h1>
+    <ul>
+        {% for wort in wörter %}
+            <li>{{ wort.deutsch }} - {{ wort.finnisch }} (Kategorie: {{ wort.kategorie.name }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'wort_hinzufuegen' %}">Neues Wort hinzufügen</a>
+</body>
+</html>
