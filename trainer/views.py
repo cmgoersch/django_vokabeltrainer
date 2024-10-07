@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Wort, Satz, Kategorie
 from .forms import WortForm, SatzForm
+import random
 
 
 def wort_satz_liste(request):
@@ -32,18 +33,21 @@ def satz_hinzufuegen(request):
     
     return render(request, 'trainer/satz_hinzufuegen.html', {'form': form})
 
-    # View zum Löschen eines Wortes
-def wort_loeschen(request, id):
-    wort = get_object_or_404(Wort, id=id)
-    wort.delete()  # Löschen des Wortes
-    return redirect('wort_satz_liste')  # Zurück zur Liste nach dem Löschen
+    # View zum Löschen eines Wortes# Funktion zum Löschen eines Wortes
+def wort_loeschen(request, pk):
+    wort = get_object_or_404(Wort, pk=pk)  # Das Wort-Objekt anhand der pk holen
+    if request.method == 'POST':
+        wort.delete()  # Das Wort löschen
+        return redirect('wort_satz_liste')  # Zurück zur Liste
+    return redirect('wort_satz_liste')  # Falls kein POST-Request, zurück zur Liste
 
-# View zum Löschen eines Satzes
-def satz_loeschen(request, id):
-    satz = get_object_or_404(Satz, id=id)
-    satz.delete()  # Löschen des Satzes
-    return redirect('wort_satz_liste')  # Zurück zur Liste nach dem Löschen
-
+# Funktion zum Löschen eines Satzes
+def satz_loeschen(request, pk):
+    satz = get_object_or_404(Satz, pk=pk)  # Das Satz-Objekt anhand der pk holen
+    if request.method == 'POST':
+        satz.delete()  # Den Satz löschen
+        return redirect('wort_satz_liste')  # Zurück zur Liste
+    return redirect('wort_satz_liste')  # Falls kein POST-Request, zurück zur Liste
 
 # Bearbeiten eines Wortes
 def wort_bearbeiten(request, pk):
@@ -74,3 +78,39 @@ def satz_bearbeiten(request, pk):
         form = SatzForm(instance=satz)
     
     return render(request, 'trainer/satz_bearbeiten.html', {'form': form})
+
+def vokabel_uebung(request, mode):
+    wörter = list(Wort.objects.all())  # Alle Wörter abrufen
+    if not wörter:
+        return render(request, 'trainer/vokabel_uebung.html', {'error': 'Keine Wörter vorhanden.'})
+    
+    # Zufälliges Wort auswählen
+    wort = random.choice(wörter)
+
+    # Überprüfen, ob der Benutzer auf "Ich weiß es!" geklickt hat
+    if request.method == 'POST':
+        show_answer = True  # Antwort anzeigen
+    else:
+        show_answer = False  # Antwort nicht anzeigen
+
+    # Modus überprüfen und entsprechend das Wort anzeigen
+    if mode == "deutsch-finnisch":
+        question = wort.deutsch
+        answer = wort.finnisch
+    elif mode == "finnisch-deutsch":
+        question = wort.finnisch
+        answer = wort.deutsch
+    else:  # gemischt
+        if random.choice([True, False]):
+            question = wort.deutsch
+            answer = wort.finnisch
+        else:
+            question = wort.finnisch
+            answer = wort.deutsch
+
+    return render(request, 'trainer/vokabel_uebung.html', {
+        'question': question,
+        'answer': answer,
+        'show_answer': show_answer,
+        'mode': mode
+    })

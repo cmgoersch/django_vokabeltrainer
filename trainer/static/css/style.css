@@ -143,6 +143,13 @@ button:hover {
     background-color: #45a049;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;  /* Abstand zwischen den Buttons */
+    margin-bottom: 20px;  /* Abstand zwischen Buttons und der Liste */
+}
+
 /* Footer */
 footer {
     margin-top: 20px;

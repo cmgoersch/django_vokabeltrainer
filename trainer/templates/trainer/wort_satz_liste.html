@@ -12,7 +12,11 @@
 
         <!-- Titel der App -->
         <h1>Annas Vokabeltrainer App</h1>
-
+        <div class="button-container">
+            <a href="{% url 'vokabel_uebung' 'deutsch-finnisch' %}" class="btn btn-primary">Deutsch > Finnisch</a>
+            <a href="{% url 'vokabel_uebung' 'finnisch-deutsch' %}" class="btn btn-primary">Finnisch > Deutsch</a>
+            <a href="{% url 'vokabel_uebung' 'gemischt' %}" class="btn btn-primary">Gemischt</a>
+        </div>
         <!-- Buttons zum Hinzufügen eines neuen Wortes und Satzes -->
         <div class="button-container">
             <a href="{% url 'wort_hinzufuegen' %}" class="btn btn-primary">Neues Wort hinzufügen</a>

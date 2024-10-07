@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vokabeltrainer - Übung</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Vokabel üben - Modus: {{ mode|title }}</h1>
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% else %}
+            <div class="vokabel-block">
+                <p><strong>Frage:</strong> {{ question }}</p>
+                {% if show_answer %}
+                    <p><strong>Antwort:</strong> {{ answer }}</p>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Ich weiß es!</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
+    </div>
+</body>
+</html>

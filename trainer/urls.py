@@ -12,7 +12,11 @@ urlpatterns = [
     # URLs für das Bearbeiten
     path('wort-bearbeiten/<int:pk>/', views.wort_bearbeiten, name='wort_bearbeiten'),
     path('satz-bearbeiten/<int:pk>/', views.satz_bearbeiten, name='satz_bearbeiten'),
+
+    path('vokabel-uebung/', views.vokabel_uebung, name='vokabel_uebung'),
+    path('vokabel-uebung/<str:mode>/', views.vokabel_uebung, name='vokabel_uebung'),
 ]
+
 
 if settings.DEBUG:
     import debug_toolbar
