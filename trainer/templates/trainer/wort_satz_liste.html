@@ -16,23 +16,31 @@
                 <li>
                     <div class="word-block">
                         <strong>Deutsch:</strong> {{ wort.deutsch }}
-                        <button class="show-hint" onclick="toggleMerksatz('merksatz-{{ wort.id }}')">?</button>
                     </div>
                     <div class="word-block">
                         <strong>Finnisch:</strong> {{ wort.finnisch }}
                     </div>
-                    <p id="merksatz-{{ wort.id }}" class="merksatz" style="display:none;">Merksatz: {{ wort.merksatz }}</p>
 
-                    <!-- Löschen-Formular für das Wort -->
-                    <form method="POST" action="{% url 'wort_loeschen' wort.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Löschen</button>
-                    </form>
+                    <!-- Buttons -->
+                    <div>
+                        <!-- Fragezeichen-Button zuerst -->
+                        <button class="show-hint" onclick="toggleMerksatz('merksatz-{{ wort.id }}')">?</button>
+                        <form method="POST" action="{% url 'wort_loeschen' wort.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Löschen</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Merksatz direkt unter dem Wort -->
+                    <p id="merksatz-{{ wort.id }}" class="merksatz">Merksatz: {{ wort.merksatz }}</p>
                 </li>
             {% empty %}
                 <li>Keine Wörter vorhanden.</li>
             {% endfor %}
         </ul>
+
+        <!-- Button zum Hinzufügen eines neuen Wortes -->
+        <a href="{% url 'wort_hinzufuegen' %}" class="btn btn-primary add-button">Neues Wort hinzufügen</a>
 
         <!-- Liste der Sätze -->
         <h1>Liste der Sätze</h1>
@@ -41,29 +49,41 @@
                 <li>
                     <div class="word-block">
                         <strong>Deutsch:</strong> {{ satz.deutsch }}
-                        <button class="show-hint" onclick="toggleMerksatz('merksatz-satz-{{ satz.id }}')">?</button>
                     </div>
                     <div class="word-block">
                         <strong>Finnisch:</strong> {{ satz.finnisch }}
                     </div>
-                    <p id="merksatz-satz-{{ satz.id }}" class="merksatz" style="display:none;">Merksatz: {{ satz.merksatz }}</p>
 
-                    <!-- Löschen-Formular für den Satz -->
-                    <form method="POST" action="{% url 'satz_loeschen' satz.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Löschen</button>
-                    </form>
+                    <!-- Buttons -->
+                    <div>
+                        <!-- Fragezeichen-Button zuerst -->
+                        <button class="show-hint" onclick="toggleMerksatz('merksatz-satz-{{ satz.id }}')">?</button>
+                        <form method="POST" action="{% url 'satz_loeschen' satz.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Löschen</button>
+                        </form>
+                    </div>
+
+                    <!-- Merksatz direkt unter dem Satz -->
+                    <p id="merksatz-satz-{{ satz.id }}" class="merksatz">Merksatz: {{ satz.merksatz }}</p>
                 </li>
             {% empty %}
                 <li>Keine Sätze vorhanden.</li>
             {% endfor %}
         </ul>
+
+        <!-- Button zum Hinzufügen eines neuen Satzes -->
+        <a href="{% url 'satz_hinzufuegen' %}" class="btn btn-primary">Neuen Satz hinzufügen</a>
     </div>
+
+    <footer>
+        <p>© 2024 Vokabeltrainer</p>
+    </footer>
 
     <script>
         function toggleMerksatz(id) {
             var merksatzElement = document.getElementById(id);
-            if (merksatzElement.style.display === "none") {
+            if (merksatzElement.style.display === "none" || merksatzElement.style.display === "") {
                 merksatzElement.style.display = "block";
             } else {
                 merksatzElement.style.display = "none";

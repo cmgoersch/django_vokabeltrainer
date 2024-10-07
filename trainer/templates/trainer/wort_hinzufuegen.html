@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wort hinzufügen</title>
+    <title>Neues Wort hinzufügen</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -12,9 +12,10 @@
         <h1>Neues Wort hinzufügen</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.as_p }}  <!-- Dies rendert das Formular automatisch, inkl. des Merksatzes -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
+        <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
     </div>
 </body>
 </html>

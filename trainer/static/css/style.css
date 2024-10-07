@@ -47,7 +47,7 @@ ul {
 li {
     background-color: #fff;
     padding: 15px;
-    margin: 10px 0;
+    margin: 20px 0;  /* Abstand zwischen den einzelnen Elementen */
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 18px;
@@ -56,6 +56,7 @@ li {
     display: flex;  /* Flexbox für die nebeneinander Anordnung */
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;  /* Flex für Responsivität */
 }
 
 li:hover {
@@ -64,11 +65,25 @@ li:hover {
 
 /* Block für Deutsch und Finnisch */
 .word-block {
-    width: 48%;  /* Die beiden Blöcke nehmen jeweils fast die Hälfte ein */
+    flex: 1;  /* Beide Blöcke nehmen gleich viel Platz ein */
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;  /* Abstand zwischen den Wortblöcken */
+}
+
+/* Merksatz */
+.merksatz {
+    display: none;  /* Wird erst bei Klick auf Fragezeichen sichtbar */
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 10px;  /* Abstand zum darüberliegenden Feld */
+    border-left: 3px solid #4CAF50;
+    font-style: italic;
+    width: 100%;  /* Volle Breite */
+    box-sizing: border-box;  /* Inklusive Padding */
+    clear: both;  /* Um sicherzustellen, dass der Merksatz unter den Blöcken bleibt */
 }
 
 /* Buttons */
@@ -86,6 +101,13 @@ a {
 a:hover {
     background-color: #45a049;
 }
+
+/* Abstand zwischen "Wort hinzufügen"-Button und der Liste der Sätze */
+.add-button {
+    margin-bottom: 40px;  /* Zusätzlicher Abstand */
+}
+
+
 
 /* Formularstile */
 .form-container {
@@ -135,6 +157,7 @@ footer {
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;
+    margin-left: 10px;  /* Platz zwischen Buttons */
 }
 
 /* Löschen-Button (rot) */
@@ -146,4 +169,23 @@ footer {
 
 .btn-danger:hover {
     background-color: #c82333;
+}
+
+/* Fragezeichen-Button */
+.show-hint {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;  /* Leicht abgerundete Ecken, wie beim Löschen-Button */
+    font-size: 16px;
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px;  /* Platz zwischen Buttons */
+    padding: 5px 10px;  /* Ähnlich wie bei den anderen Buttons */
+}
+
+.show-hint:hover {
+    background-color: #45a049;
 }
