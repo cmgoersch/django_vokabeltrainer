@@ -68,23 +68,23 @@ class SatzLoeschenView(DeleteView):
     success_url = reverse_lazy('wort_satz_liste')
 
 
-# --- Vokabelübung ---
 def vokabel_uebung(request, mode):
-    # Alle Wörter abrufen und sicherstellen, dass es welche gibt
-    wörter = list(Wort.objects.all())
-    if not wörter:
-        return render(request, 'trainer/vokabel_uebung.html', {'error': 'Keine Wörter vorhanden.'})
-
-    # Zufälliges Wort auswählen
-    wort = random.choice(wörter)
-
-    # Überprüfen, ob der Benutzer auf "Ich weiß es!" geklickt hat
-    if request.method == 'POST':
+    # Falls der Benutzer auf "Ich weiß es!" geklickt hat
+    if request.method == 'POST' and 'wort_id' in request.session:
+        wort_id = request.session['wort_id']
+        wort = Wort.objects.get(id=wort_id)
         show_answer = True  # Antwort anzeigen
     else:
+        # Zufälliges Wort auswählen und in der Session speichern
+        wörter = list(Wort.objects.all())
+        if not wörter:
+            return render(request, 'trainer/vokabel_uebung.html', {'error': 'Keine Wörter vorhanden.'})
+
+        wort = random.choice(wörter)
+        request.session['wort_id'] = wort.id  # Speichern der Wort-ID für spätere Verwendung
         show_answer = False  # Antwort nicht anzeigen
 
-    # Je nach Modus die Frage und Antwort festlegen
+    # Frage und Antwort entsprechend dem Modus zuweisen
     if mode == "deutsch-finnisch":
         question = wort.deutsch  # Zeige die deutsche Frage
         answer = wort.finnisch  # Zeige die finnische Antwort
@@ -92,7 +92,7 @@ def vokabel_uebung(request, mode):
         question = wort.finnisch  # Zeige die finnische Frage
         answer = wort.deutsch  # Zeige die deutsche Antwort
     else:  # gemischt
-        # Zufällig Deutsch oder Finnisch als Frage auswählen
+        # Zufällig Deutsch oder Finnisch als Frage auswählen und die Antwort passend setzen
         if random.choice([True, False]):
             question = wort.deutsch
             answer = wort.finnisch
@@ -100,7 +100,7 @@ def vokabel_uebung(request, mode):
             question = wort.finnisch
             answer = wort.deutsch
 
-    # Rendern der Übungsseite mit der Frage und ggf. der Antwort
+    # Rendern der Übungsseite mit der Frage und der korrekten Antwort
     return render(request, 'trainer/vokabel_uebung.html', {
         'question': question,
         'answer': answer,
