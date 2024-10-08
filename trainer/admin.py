@@ -1,8 +1,20 @@
 from django.contrib import admin
+from .models import Wort, Satz, Kategorie
 
-# Register your models here.
-from django.contrib import admin
-from .models import Wort, Kategorie
+# Admin-Modell für Wort
+@admin.register(Wort)
+class WortAdmin(admin.ModelAdmin):
+    list_display = ('id', 'deutsch', 'finnisch', 'kategorie')  # Zeigt die ID und Felder an
+    readonly_fields = ('id',)  # ID nur lesbar machen
 
-admin.site.register(Wort)
-admin.site.register(Kategorie)
+# Admin-Modell für Satz
+@admin.register(Satz)
+class SatzAdmin(admin.ModelAdmin):
+    list_display = ('id', 'deutsch', 'finnisch', 'kategorie')  # Zeigt die ID und Felder an
+    readonly_fields = ('id',)  # ID nur lesbar machen
+
+# Admin-Modell für Kategorie
+@admin.register(Kategorie)
+class KategorieAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')  # Zeigt die ID und den Namen an
+    readonly_fields = ('id',)  # ID nur lesbar machen

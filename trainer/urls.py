@@ -1,23 +1,28 @@
 from django.conf import settings
 from django.urls import include, path
-from . import views
+from .views import (
+    WortSatzListeView, WortErstellenView, SatzErstellenView, WortBearbeitenView, SatzBearbeitenView,
+    WortLoeschenView, SatzLoeschenView, vokabel_uebung
+)
 
 urlpatterns = [
-    path('', views.wort_satz_liste, name='wort_satz_liste'),
-    path('wort-hinzufuegen/', views.wort_hinzufuegen, name='wort_hinzufuegen'),
-    path('satz-hinzufuegen/', views.satz_hinzufuegen, name='satz_hinzufuegen'),
-    path('wort-loeschen/<int:pk>/', views.wort_loeschen, name='wort_loeschen'),
-    path('satz-loeschen/<int:pk>/', views.satz_loeschen, name='satz_loeschen'),
-    
-    # URLs für das Bearbeiten
-    path('wort-bearbeiten/<int:pk>/', views.wort_bearbeiten, name='wort_bearbeiten'),
-    path('satz-bearbeiten/<int:pk>/', views.satz_bearbeiten, name='satz_bearbeiten'),
+    # URLs für die Liste, Hinzufügen, Bearbeiten und Löschen von Wörtern und Sätzen
+    path('', WortSatzListeView.as_view(), name='wort_satz_liste'),  # Verwendung der Class-based View
+    path('wort-hinzufuegen/', WortErstellenView.as_view(), name='wort_hinzufuegen'),
+    path('satz-hinzufuegen/', SatzErstellenView.as_view(), name='satz_hinzufuegen'),
+    path('wort-loeschen/<int:pk>/', WortLoeschenView.as_view(), name='wort_loeschen'),
+    path('satz-loeschen/<int:pk>/', SatzLoeschenView.as_view(), name='satz_loeschen'),
 
-    path('vokabel-uebung/', views.vokabel_uebung, name='vokabel_uebung'),
-    path('vokabel-uebung/<str:mode>/', views.vokabel_uebung, name='vokabel_uebung'),
+    # URLs für das Bearbeiten von Wörtern und Sätzen
+    path('wort-bearbeiten/<int:pk>/', WortBearbeitenView.as_view(), name='wort_bearbeiten'),
+    path('satz-bearbeiten/<int:pk>/', SatzBearbeitenView.as_view(), name='satz_bearbeiten'),
+
+    # URL für die Vokabel-Übung (mit und ohne Modus)
+    path('vokabel-uebung/', vokabel_uebung, name='vokabel_uebung'),
+    path('vokabel-uebung/<str:mode>/', vokabel_uebung, name='vokabel_uebung'),
 ]
 
-
+# Debug toolbar, falls Debug-Modus aktiv ist
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
