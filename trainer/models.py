@@ -12,7 +12,7 @@ class Wort(models.Model):
     deutsch = models.CharField(max_length=100)
     finnisch = models.CharField(max_length=100)
     merksatz = models.TextField(null=True, blank=True)
-    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE)
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE, null=True, default=1)
 
     def __str__(self):
         return f'{self.deutsch} - {self.finnisch}'
@@ -22,7 +22,7 @@ class Satz(models.Model):
     deutsch = models.CharField(max_length=255)
     finnisch = models.CharField(max_length=255)
     merksatz = models.TextField(null=True, blank=True)
-    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE)
+    kategorie = models.ForeignKey(Kategorie, on_delete=models.CASCADE, null=True, default=1)
 
     def __str__(self):
         return f'{self.deutsch} - {self.finnisch}'
