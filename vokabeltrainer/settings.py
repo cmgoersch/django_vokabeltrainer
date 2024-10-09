@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEEPL_API_KEY = "26d57668-1fa2-420d-84f2-8c4418db8f61:fx"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

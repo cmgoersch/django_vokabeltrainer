@@ -1,4 +1,5 @@
 from django.conf import settings
+from . import views
 from django.urls import include, path
 from .views import (
     WortSatzListeView, WortErstellenView, SatzErstellenView, WortBearbeitenView, SatzBearbeitenView,
@@ -20,6 +21,9 @@ urlpatterns = [
     # URL für die Vokabel-Übung (mit und ohne Modus)
     path('vokabel-uebung/', vokabel_uebung, name='vokabel_uebung'),
     path('vokabel-uebung/<str:mode>/', vokabel_uebung, name='vokabel_uebung'),
+    
+    # Andere URLs
+    path('get_translation/', views.get_translation, name='get_translation'),
 ]
 
 # Debug toolbar, falls Debug-Modus aktiv ist

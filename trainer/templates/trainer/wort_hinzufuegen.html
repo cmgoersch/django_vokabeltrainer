@@ -13,9 +13,46 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}  <!-- Dies rendert das Formular automatisch, inkl. des Merksatzes -->
+
+            <!-- Button, um die Übersetzung abzurufen -->
+            <button type="button" id="get-translation" class="btn btn-secondary">Übersetzungsvorschlag mit DeepL erstellen</button>
+            
+            <!-- Übersetzungsvorschlag anzeigen -->
+            <div id="translation-result" style="margin-top: 15px;"></div>
+            
+            <!-- "Übernehmen"-Button wird erst sichtbar, wenn ein Übersetzungsvorschlag vorliegt -->
+            <button type="button" id="use-translation" class="btn btn-primary" style="display:none;">Übernehmen</button>
+            
+            <!-- Speichern-Button -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
         <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
     </div>
 </body>
+<script>
+    // Event Listener für den "Übersetzungsvorschlag" Button
+    document.getElementById("get-translation").addEventListener("click", function() {
+        const deutschesWort = document.getElementById("id_deutsch").value;
+        if (deutschesWort.length > 0) {
+            // API Anfrage für die Übersetzung
+            fetch(`/get_translation/?text=${deutschesWort}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.translation) {
+                    // Zeige den Übersetzungsvorschlag im Div an
+                    document.getElementById("translation-result").innerText = `Vorschlag: ${data.translation}`;
+                    
+                    // Zeige den "Übernehmen"-Button
+                    document.getElementById("use-translation").style.display = 'inline-block';
+                    
+                    // Event Listener für den "Übernehmen"-Button
+                    document.getElementById("use-translation").addEventListener("click", function() {
+                        // Übertrage die Übersetzung ins finnische Textfeld
+                        document.getElementById("id_finnisch").value = data.translation;
+                    });
+                }
+            });
+        }
+    });
+</script>
 </html>

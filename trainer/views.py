@@ -4,6 +4,11 @@ from .forms import WortForm, SatzForm
 import random
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.conf import settings
+from .deepl_integration import translate_to_finnish
+from django.http import JsonResponse
+
+
 
 
 # --- Listenansicht für Wörter und Sätze ---
@@ -28,6 +33,20 @@ class WortErstellenView(CreateView):
     form_class = WortForm
     template_name = 'trainer/wort_hinzufuegen.html'
     success_url = reverse_lazy('wort_satz_liste')
+
+    def form_valid(self, form):
+        # Hole das deutsche Wort aus dem Formular
+        deutsches_wort = form.cleaned_data['deutsch']
+        
+        # Rufe die Übersetzung von DeepL ab
+        finnisches_wort = translate_to_finnish(deutsches_wort, settings.DEEPL_API_KEY)
+        
+        # Wenn eine Übersetzung gefunden wurde, fülle das Feld automatisch aus
+        if finnisches_wort:
+            form.instance.finnisch = finnisches_wort
+        
+        # Speichere das Wort normal
+        return super().form_valid(form)
 
 
 # --- Erstellen eines neuen Satzes ---
@@ -107,3 +126,11 @@ def vokabel_uebung(request, mode):
         'show_answer': show_answer,
         'mode': mode
     })
+
+
+def get_translation(request):
+    deutsches_wort = request.GET.get("text", None)
+    if deutsches_wort:
+        finnisches_wort = translate_to_finnish(deutsches_wort, settings.DEEPL_API_KEY)
+        return JsonResponse({"translation": finnisches_wort})
+    return JsonResponse({"error": "Keine Übersetzung gefunden"}, status=400)
