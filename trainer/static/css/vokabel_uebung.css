@@ -29,7 +29,7 @@
 }
 
 .karte-rueckseite {
-    border-color: #28a745; /* Grüner Streifen auf der Rückseite */
+    border-color: #3F7C85; /* Grüner Streifen auf der Rückseite */
 }
 
 /* Globale Button-Reset-Regeln */
@@ -61,13 +61,13 @@ button,
 
 /* Standard Button Style für "Weiter" */
 .btn-secondary {
-    background-color: #28a745;
+    background-color: #3F7C85;
     color: white;
     margin-top: 20px;
 }
 
 .btn-secondary:hover {
-    background-color: #218838;
+    background-color: #00CCBF;
 }
 /* Text-Styles */
 .vokabel-karte p {
