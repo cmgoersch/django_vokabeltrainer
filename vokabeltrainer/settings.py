@@ -111,7 +111,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEEPL_API_KEY = "26d57668-1fa2-420d-84f2-8c4418db8f61:fx"
+import os
+from dotenv import load_dotenv
+
+# Pfad zur .env-Datei laden
+load_dotenv()
+
+# API-Key aus Umgebungsvariable laden
+DEEPL_API_KEY = os.getenv('DEEPL_API_KEY')
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
