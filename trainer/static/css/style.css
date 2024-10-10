@@ -14,8 +14,7 @@ body {
 
 /* Header */
 h1 {
-    background-color: #4CAF50;
-    color: white;
+    color: #10454F;
     padding: 20px;
     border-radius: 5px 5px 0 0;  
     text-align: center;
@@ -23,7 +22,7 @@ h1 {
     box-sizing: border-box;
     max-width: 1000px;
     margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   
 }
 
 /* Container für den Inhalt der Seite */
@@ -65,7 +64,7 @@ li {
     align-items: center;
     flex-wrap: wrap; /* Responsives Design */
     transition: transform 0.2s;
-    border-left: 4px solid #4CAF50; /* Grüne Linie am Rand */
+    border-left: 4px solid #10454F; /* Grüne Linie am Rand */
 }
 
 li:hover {
@@ -87,7 +86,7 @@ li:hover {
     background-color: #f9f9f9;
     padding: 10px;
     margin-top: 10px;
-    border-left: 3px solid #4CAF50;
+    border-left: 3px solid #10454F;
     font-style: italic;
     width: 100%;
     box-sizing: border-box;
@@ -98,7 +97,7 @@ li:hover {
 a {
     display: inline-block;
     text-decoration: none;
-    background-color: #4CAF50;
+    background-color: #10454F;
     color: white;
     font-size: 16px;
     border-radius: 5px;
@@ -108,11 +107,11 @@ a {
 }
 
 a:hover {
-    background-color: #45a049;
+    background-color: #506266;
 }
 
 .btn-danger {
-    background-color: #dc3545;
+    background-color: #A3AB78;
     color: white;
     border: none;
     border-radius: 5px;
@@ -123,11 +122,11 @@ a:hover {
 }
 
 .btn-danger:hover {
-    background-color: #c82333;
+    background-color: #A3AB78;
 }
 
 .show-hint {
-    background-color: #4CAF50;
+    background-color: #818274;
     color: white;
     border: none;
     border-radius: 5px;
@@ -138,12 +137,12 @@ a:hover {
 }
 
 .show-hint:hover {
-    background-color: #45a049;
+    background-color: #A3AB78;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #BDE038;
     color: white;
     border: none;
     border-radius: 5px;
@@ -151,7 +150,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #A3AB78;
 }
 
 .mode-buttons {
@@ -172,9 +171,10 @@ button:hover {
 
 .create-button {
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5PX;
     margin-bottom: 20px;
-    background-color: #4CAF50;
+    background-color: #BDE038;
     color: white;
     border: none;
     border-radius: 5px;
@@ -182,6 +182,10 @@ button:hover {
     font-size: 18px;
     padding: 10px 15px;
     transition: background-color 0.3s;
+}
+
+.create-button:hover {
+    background-color: #A3AB78;
 }
 
 footer {
