@@ -23,7 +23,7 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 ## Start in VS Code
 
     •	Python3 manage.py runserver
-# Demo Screenshots
+
 
 ### Vokabel Übungsmodus
 <img src="static/demo_karte.png" alt="Demo Karte" width="300"/>
@@ -33,3 +33,7 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 
 ### Eingabefeld
 <img src="static/demo_wort.png" alt="Demo Wort" width="300"/>
+
+<video width="600" controls>
+  <source src="public/Demo_Video.mp4" type="video/mp4">
+</video>
