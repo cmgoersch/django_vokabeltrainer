@@ -6,16 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neuen Satz hinzufügen</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}">  <!-- Neue CSS-Datei -->
 </head>
 <body>
     <div class="container">
         <h1>Neuen Satz hinzufügen</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Dies rendert das Formular automatisch, inkl. des Merksatzes -->
+            <div class="form-group">
+                <label for="id_deutsch">Deutsch:</label>
+                {{ form.deutsch }}  <!-- Rendert das deutsche Satzfeld -->
+            </div>
+
+            <div class="form-group">
+                <label for="id_finnisch">Finnisch:</label>
+                {{ form.finnisch }}  <!-- Rendert das finnische Satzfeld -->
+            </div>
+
+            <!-- Button, um die Übersetzung abzurufen -->
+            <button type="button" id="get-translation" class="btn btn-secondary">Übersetzungsvorschlag mit DeepL erstellen</button>
+            
+            <!-- Übersetzungsvorschlag anzeigen -->
+            <div id="translation-result" style="margin-top: 15px;"></div>
+            
+            <!-- "Übernehmen"-Button wird erst sichtbar, wenn ein Übersetzungsvorschlag vorliegt -->
+            <button type="button" id="use-translation" class="btn btn-primary" style="display:none;">Übernehmen</button>
+
+            <div class="form-group">
+                <label for="id_merksatz">Merksatz:</label>
+                {{ form.merksatz }}  <!-- Rendert das Merksatz-Feld -->
+            </div>
+
+            <!-- Speichern-Button -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
+
         <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
     </div>
+
+    <script>
+        // Event Listener für den "Übersetzungsvorschlag" Button
+        document.getElementById("get-translation").addEventListener("click", function() {
+            const deutscherSatz = document.getElementById("id_deutsch").value;
+            if (deutscherSatz.length > 0) {
+                // API Anfrage für die Übersetzung
+                fetch(`/get_translation/?text=${deutscherSatz}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.translation) {
+                        // Zeige den Übersetzungsvorschlag im Div an
+                        document.getElementById("translation-result").innerText = `Vorschlag: ${data.translation}`;
+                        
+                        // Zeige den "Übernehmen"-Button
+                        document.getElementById("use-translation").style.display = 'inline-block';
+                        
+                        // Event Listener für den "Übernehmen"-Button
+                        document.getElementById("use-translation").addEventListener("click", function() {
+                            // Übertrage die Übersetzung ins finnische Textfeld
+                            document.getElementById("id_finnisch").value = data.translation;
+                        });
+                    }
+                })
+                .catch(error => {
+                    // Füge hier eine einfache Fehlerbehandlung hinzu, falls die API nicht funktioniert
+                    document.getElementById("translation-result").innerText = "Fehler bei der Übersetzung.";
+                    console.error('Error:', error);
+                });
+            } else {
+                document.getElementById("translation-result").innerText = "Bitte einen deutschen Satz eingeben.";
+            }
+        });
+    </script>
 </body>
 </html>

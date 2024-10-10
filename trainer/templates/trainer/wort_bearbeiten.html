@@ -6,16 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wort bearbeiten</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}"> <!-- Gemeinsame CSS-Datei verlinken -->
 </head>
 <body>
     <div class="container">
         <h1>Wort bearbeiten</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Das Formular zeigt das zu bearbeitende Wort -->
+            <div class="form-group">
+                <label for="id_deutsch">Deutsch:</label>
+                {{ form.deutsch }}  <!-- Feld für das deutsche Wort -->
+            </div>
+
+            <div class="form-group">
+                <label for="id_finnisch">Finnisch:</label>
+                {{ form.finnisch }}  <!-- Feld für das finnische Wort -->
+            </div>
+
+            <div class="form-group">
+                <label for="id_merksatz">Merksatz:</label>
+                {{ form.merksatz }}  <!-- Feld für den Merksatz -->
+            </div>
+
+            <!-- Speichern-Button -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
-        <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
+
+        <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary" style="margin-top: 20px;">Zurück zur Liste</a>
     </div>
 </body>
 </html>

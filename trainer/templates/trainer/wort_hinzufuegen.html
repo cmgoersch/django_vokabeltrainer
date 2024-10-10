@@ -6,47 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neues Wort hinzufügen</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-        /* Grundlegendes Formular-Styling */
-        form {
-            margin-top: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], textarea {
-            width: 500px;  /* Festgelegte Breite für die Eingabefelder */
-            max-width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        #get-translation, #use-translation {
-            margin-top: 15px;
-        }
-
-        #translation-result {
-            font-size: 16px;
-            margin-top: 15px;
-            margin-bottom: 20px; /* Größerer Abstand nach dem Übersetzungsvorschlag */
-            color: #555;
-        }
-
-        /* Abstand zwischen dem Übernehmen-Button und dem Merksatz-Feld */
-        #use-translation {
-            margin-bottom: 25px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}"> <!-- Hier verlinkt -->
 </head>
 <body>
     <div class="container">
@@ -89,26 +49,18 @@
         document.getElementById("get-translation").addEventListener("click", function() {
             const deutschesWort = document.getElementById("id_deutsch").value;
             if (deutschesWort.length > 0) {
-                // API Anfrage für die Übersetzung
                 fetch(`/get_translation/?text=${deutschesWort}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.translation) {
-                        // Zeige den Übersetzungsvorschlag im Div an
                         document.getElementById("translation-result").innerText = `Vorschlag: ${data.translation}`;
-                        
-                        // Zeige den "Übernehmen"-Button
                         document.getElementById("use-translation").style.display = 'inline-block';
-                        
-                        // Event Listener für den "Übernehmen"-Button
                         document.getElementById("use-translation").addEventListener("click", function() {
-                            // Übertrage die Übersetzung ins finnische Textfeld
                             document.getElementById("id_finnisch").value = data.translation;
                         });
                     }
                 })
                 .catch(error => {
-                    // Füge hier eine einfache Fehlerbehandlung hinzu, falls die API nicht funktioniert
                     document.getElementById("translation-result").innerText = "Fehler bei der Übersetzung.";
                     console.error('Error:', error);
                 });

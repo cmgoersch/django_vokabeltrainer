@@ -1,0 +1,56 @@
+/* form_style.css */
+
+/* Grundlegendes Formular-Styling */
+form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], textarea {
+    width: 500px;  /* Festgelegte Breite für die Eingabefelder */
+    max-width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#translation-result {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+}
+
+button.btn-primary {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    margin-right: 10px;
+}
+
+/* Abstand zwischen Buttons */
+button + button {
+    margin-left: 10px;
+}
