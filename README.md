@@ -34,6 +34,9 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 ### Eingabefeld
 <img src="static/demo_wort.png" alt="Demo Wort" width="300"/>
 
+[Demo Video](public/Demo_Video.mp4)
+
 <video width="600" controls>
   <source src="public/Demo_Video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
 </video>
