@@ -1,4 +1,4 @@
-/* Allgemeine Stile */
+/* Allgemeine Stile für die gesamte Seite */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
 }
 
@@ -17,73 +17,73 @@ h1 {
     background-color: #4CAF50;
     color: white;
     padding: 20px;
-    border-radius: 5px 5px 0 0;  /* Rundungen nur oben */
+    border-radius: 5px 5px 0 0;  
     text-align: center;
     width: 100%;  
-    box-sizing: border-box; /* Inklusive Padding */
-    max-width: 1000px;  /* Maximale Breite */
-    margin: 0 auto;    /* Zentriert */
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 0 auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Container für die Seite */
+/* Container für den Inhalt der Seite */
 .container {
     width: 100%;
-    max-width: 1000px;  /* Maximale Breite */
-    margin: 20px auto; /* Zentriert */
+    max-width: 1000px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 0 0 5px 5px;  /* Rundungen nur unten */
+    border-radius: 0 0 5px 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Inklusive Padding */
+    box-sizing: border-box;
 }
 
 /* Liste der Wörter und Sätze */
 ul {
-    list-style-type: none; /* Aufzählungspunkte entfernen */
+    list-style-type: none; /* Entfernt die Aufzählungszeichen */
     padding: 0;
+    margin: 0;
 }
 
 li {
     background-color: #fff;
     padding: 15px;
-    margin: 20px 0;  /* Abstand zwischen den einzelnen Elementen */
+    margin: 20px 0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 18px;
-    transition: transform 0.2s;
-    border-left: 4px solid #4CAF50; /* Grüne Linie am Rand */
-    display: flex;  /* Flexbox für die nebeneinander Anordnung */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;  /* Flex für Responsivität */
+    flex-wrap: wrap; /* Responsives Design */
+    transition: transform 0.2s;
+    border-left: 4px solid #4CAF50; /* Grüne Linie am Rand */
 }
 
 li:hover {
     transform: scale(1.02);
 }
 
-/* Block für Deutsch und Finnisch */
 .word-block {
-    flex: 1;  /* Beide Blöcke nehmen gleich viel Platz ein */
+    flex: 1;  
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;  /* Abstand zwischen den Wortblöcken */
+    margin-right: 20px;
 }
 
 /* Merksatz */
 .merksatz {
-    display: none;  /* Wird erst bei Klick auf Fragezeichen sichtbar */
+    display: none;
     background-color: #f9f9f9;
     padding: 10px;
-    margin-top: 10px;  /* Abstand zum darüberliegenden Feld */
+    margin-top: 10px;
     border-left: 3px solid #4CAF50;
     font-style: italic;
-    width: 100%;  /* Volle Breite */
-    box-sizing: border-box;  /* Inklusive Padding */
-    clear: both;  /* Um sicherzustellen, dass der Merksatz unter den Blöcken bleibt */
+    width: 100%;
+    box-sizing: border-box;
+    clear: both;
 }
 
 /* Buttons */
@@ -94,80 +94,14 @@ a {
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
 a:hover {
     background-color: #45a049;
 }
 
-/* Abstand zwischen "Wort hinzufügen"-Button und der Liste der Sätze */
-.add-button {
-    margin-bottom: 40px;  /* Zusätzlicher Abstand */
-}
-
-
-
-/* Formularstile */
-.form-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-container label {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.form-container input[type="text"], 
-.form-container select {
-    padding: 10px;
-    margin: 10px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;  /* Abstand zwischen den Buttons */
-    margin-bottom: 20px;  /* Abstand zwischen Buttons und der Liste */
-}
-
-/* Footer */
-footer {
-    margin-top: 20px;
-    color: #777;
-    text-align: center;
-    width: 100%;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    margin-left: 10px;  /* Platz zwischen Buttons */
-}
-
-/* Löschen-Button (rot) */
 .btn-danger {
     background-color: #dc3545;
     color: white;
@@ -178,21 +112,53 @@ footer {
     background-color: #c82333;
 }
 
-/* Fragezeichen-Button */
 .show-hint {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;  /* Leicht abgerundete Ecken, wie beim Löschen-Button */
+    border-radius: 5px;
     font-size: 16px;
-    width: auto;
-    height: 30px;
     cursor: pointer;
-    display: inline-block;
-    margin-left: 10px;  /* Platz zwischen Buttons */
-    padding: 5px 10px;  /* Ähnlich wie bei den anderen Buttons */
+    padding: 5px 10px;
+    margin-left: 10px;
 }
 
 .show-hint:hover {
     background-color: #45a049;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.mode-buttons .btn {
+    padding: 10px 15px;
+    font-size: 22px;
+    text-align: center;
+    width: 60%;
+    max-width: 200px;
+}
+
+footer {
+    margin-top: 20px;
+    color: #777;
+    text-align: center;
+    width: 100%;
 }

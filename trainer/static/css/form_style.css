@@ -1,8 +1,12 @@
-/* form_style.css */
-
-/* Grundlegendes Formular-Styling */
+/* Formularcontainer und Styling */
 form {
-    margin-top: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -10,18 +14,19 @@ form {
 }
 
 label {
-    font-weight: bold;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-input[type="text"], textarea {
-    width: 500px;  /* Festgelegte Breite für die Eingabefelder */
-    max-width: 100%;
-    padding: 10px;
-    font-size: 16px;
+input, textarea {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 #translation-result {
@@ -32,25 +37,38 @@ input[type="text"], textarea {
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
     border-radius: 5px;
-}
-
-button.btn-secondary {
-    background-color: #6c757d;
-    border: none;
+    background-color: #4CAF50;
     color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-button.btn-primary {
+button:hover {
+    background-color: #45a049;
+}
+
+.btn-primary {
     background-color: #28a745;
-    border: none;
-    color: white;
-    margin-right: 10px;
+    margin-top: 15px;
 }
 
-/* Abstand zwischen Buttons */
-button + button {
-    margin-left: 10px;
+.btn-secondary {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin-top: 15px;
+}
+
+.btn-secondary:hover {
+    background-color: #45a049;
+}
+
+#use-translation {
+    margin-bottom: 25px;
 }

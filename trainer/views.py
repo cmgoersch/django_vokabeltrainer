@@ -9,7 +9,8 @@ from .deepl_integration import translate_to_finnish
 from django.http import JsonResponse
 
 
-
+def startseite(request):
+    return render(request, 'trainer/startseite.html')
 
 # --- Listenansicht für Wörter und Sätze ---
 class WortSatzListeView(ListView):

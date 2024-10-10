@@ -1,77 +1,98 @@
+/* Grundlayout für die Vokabelkarte */
 .vokabel-karte {
-    width: 300px;
-    height: 200px;
-    margin: auto;
+    width: 100%; /* Passt die Karte an den Container an */
+    max-width: 400px; /* Maximalbreite der Karte */
+    margin: 40px auto; /* Zentriert die Karte horizontal */
     position: relative;
+    box-sizing: border-box; /* Stellt sicher, dass Padding in der Breitenberechnung enthalten ist */
 }
 
+/* Layout der Karte und Text innerhalb */
 .karte {
     width: 100%;
-    height: 100%;
+    padding: 20px;
     text-align: center;
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     background-color: #f9f9f9;
-    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 10px solid; /* Streifen links */
+    box-sizing: border-box; /* Verhindert Layoutverschiebungen durch Padding */
 }
 
+/* Karten-Stile für Vorder- und Rückseite */
 .karte-vorderseite {
-    border-left: 10px solid #ff7f50; /* Orangener Balken auf der Vorderseite */
+    border-color: #ff7f50; /* Orangener Streifen auf der Vorderseite */
 }
 
 .karte-rueckseite {
-    border-left: 10px solid #28a745; /* Grüner Balken auf der Rückseite */
+    border-color: #28a745; /* Grüner Streifen auf der Rückseite */
+}
+
+/* Globale Button-Reset-Regeln */
+button,
+.btn-secondary,
+.karten-button-orange {
+    box-shadow: none;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    max-width: 200px; /* Maximalbreite für die Buttons */
+    text-align: center;
 }
 
 /* Spezielle Klasse für den orangefarbenen "Ich weiß es"-Button */
 .karten-button-orange {
-    background-color: #ff7f50;
-    border-color: #ff7f50;
+    background-color: #FF7F50;
     color: white;
+    margin-top: 20px;
 }
 
 .karten-button-orange:hover {
-    background-color: #e6733f;
-    border-color: #e6733f;
+    background-color: #ff6a35;
 }
 
 /* Standard Button Style für "Weiter" */
 .btn-secondary {
     background-color: #28a745;
-    border-color: #28a745;
     color: white;
+    margin-top: 20px;
 }
 
 .btn-secondary:hover {
     background-color: #218838;
-    border-color: #218838;
 }
-
-button {
-    margin-top: 20px;
-}
-
+/* Text-Styles */
 .vokabel-karte p {
-    margin: 10px 0;
-    font-size: 1.2em;
+    margin: 20px;
+    font-size: 1.4em;
+    color: #333;
 }
 
+/* Stile für das Wort-Element in der Vokabelkarte */
+.wort { 
+    font-size: 2.5em !important;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-/* Zentriert die Buttons innerhalb der Karte */
+/* Zentriert die Inhalte */
 .vokabel-block {
     display: flex;
-    flex-direction: column; /* Ordnet die Frage und den Button untereinander an */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-/* Button-Container für Modus-Auswahl */
+/* Container für die Buttons zur Modus-Auswahl */
 .button-container {
     display: flex;
     justify-content: center;
@@ -79,7 +100,7 @@ button {
     margin-bottom: 20px;
 }
 
-/* Zentriere den gesamten Inhalt auf der Seite */
+/* Zentriert den gesamten Inhalt auf der Seite */
 body {
     display: flex;
     justify-content: center;
@@ -87,19 +108,17 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
 }
 
-
-.wort { 
-    font-size: 2em !important;
-    font-weight: bold;
-    margin-bottom: 10px;
+/* Verhindert überflüssige Ränder und Schatten */
+button, .btn-secondary, .karten-button-orange {
+    box-shadow: none;
+    outline: none;
 }
 
-.btn-secondary {
-    margin-top: 20px; /* Fügt einen Abstand nach oben hinzu */
-}
-
+/* Abstand für den "Zurück zur Liste" Button */
 .zurück-button {
-    margin-top: 70px; /* Abstand nach oben */
+    margin-top: 70px;
+    text-align: center;
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startseite</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Willkommen zur Vokabeltrainer App</h1>
+        {% if user.is_authenticated %}
+            <p>Hallo, {{ user.username }}! Sie sind eingeloggt.</p>
+            <div class="button-container">
+                <!-- Link zur Wort- und Satzliste -->
+                <a href="{% url 'wort_satz_liste' %}" class="btn btn-primary">Zur Übersicht</a>
+                <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+            </div>
+        {% else %}
+            <p>Sie sind nicht eingeloggt. <a href="{% url 'login' %}">Login</a></p>
+        {% endif %}
+    </div>
+</body>
+</html>

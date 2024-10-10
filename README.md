@@ -19,3 +19,6 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 	•	SQLite
 	•	DeepL API
 
+## Start in VS Code
+
+    •	Python3 manage.py runserver

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neues Wort hinzufügen</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/form_style.css' %}"> <!-- Hier verlinkt -->
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}">
 </head>
 <body>
     <div class="container">
@@ -15,37 +15,35 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_deutsch">Deutsch:</label>
-                {{ form.deutsch }}  <!-- Rendert das deutsche Wortfeld -->
+                {{ form.deutsch }}
             </div>
 
             <div class="form-group">
                 <label for="id_finnisch">Finnisch:</label>
-                {{ form.finnisch }}  <!-- Rendert das finnische Wortfeld -->
+                {{ form.finnisch }}
             </div>
 
-            <!-- Button, um die Übersetzung abzurufen -->
+            <!-- Button für den Übersetzungsvorschlag -->
             <button type="button" id="get-translation" class="btn btn-secondary">Übersetzungsvorschlag mit DeepL erstellen</button>
             
-            <!-- Übersetzungsvorschlag anzeigen -->
-            <div id="translation-result" style="margin-top: 15px;"></div>
+            <!-- Übersetzungsvorschlag -->
+            <div id="translation-result"></div>
             
-            <!-- "Übernehmen"-Button wird erst sichtbar, wenn ein Übersetzungsvorschlag vorliegt -->
+            <!-- Übernehmen-Button -->
             <button type="button" id="use-translation" class="btn btn-primary" style="display:none;">Übernehmen</button>
 
             <div class="form-group">
                 <label for="id_merksatz">Merksatz:</label>
-                {{ form.merksatz }}  <!-- Rendert das Merksatz-Feld -->
+                {{ form.merksatz }}
             </div>
 
             <!-- Speichern-Button -->
             <button type="submit" class="btn btn-primary">Speichern</button>
         </form>
-
         <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary">Zurück zur Liste</a>
     </div>
 
     <script>
-        // Event Listener für den "Übersetzungsvorschlag" Button
         document.getElementById("get-translation").addEventListener("click", function() {
             const deutschesWort = document.getElementById("id_deutsch").value;
             if (deutschesWort.length > 0) {
@@ -59,13 +57,7 @@
                             document.getElementById("id_finnisch").value = data.translation;
                         });
                     }
-                })
-                .catch(error => {
-                    document.getElementById("translation-result").innerText = "Fehler bei der Übersetzung.";
-                    console.error('Error:', error);
                 });
-            } else {
-                document.getElementById("translation-result").innerText = "Bitte ein deutsches Wort eingeben.";
             }
         });
     </script>

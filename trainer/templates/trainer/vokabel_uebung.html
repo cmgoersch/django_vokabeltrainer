@@ -5,56 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vokabeltrainer - Übung</title>
-
-    <!-- Verknüpfung zur allgemeinen style.css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- Verknüpfung zur spezifischen CSS-Datei für diese Seite -->
     <link rel="stylesheet" href="{% static 'css/vokabel_uebung.css' %}">
 </head>
 <body>
     <div class="container">
         <h1>Vokabel üben - Modus: {{ mode|title }}</h1>
-        <div class="button-container">
-            <a href="{% url 'vokabel_uebung' 'deutsch-finnisch' %}" class="btn btn-primary">Deutsch > Finnisch</a>
-            <a href="{% url 'vokabel_uebung' 'finnisch-deutsch' %}" class="btn btn-primary">Finnisch > Deutsch</a>
-            <a href="{% url 'vokabel_uebung' 'gemischt' %}" class="btn btn-primary">Gemischt</a>
+        <div class="mode-buttons">
+            <a href="{% url 'vokabel_uebung' 'deutsch-finnisch' %}" class="btn btn-primary">
+                🇩🇪 🇫🇮<br>Deutsch > Finnisch<br>lernen
+            </a>
+            <a href="{% url 'vokabel_uebung' 'finnisch-deutsch' %}" class="btn btn-primary">
+                🇫🇮 🇩🇪<br>Finnisch > Deutsch<br>lernen
+            </a>
+            <a href="{% url 'vokabel_uebung' 'gemischt' %}" class="btn btn-primary">
+                🇩🇪 🇫🇮<br>Gemischt<br>lernen
+            </a>
         </div>
+
         {% if error %}
             <p>{{ error }}</p>
         {% else %}
         <div class="vokabel-karte">
-            <!-- Vorderseite -->
             {% if not show_answer %}
             <div class="karte karte-vorderseite">
                 <p><strong>Was heißt:</strong></p>
                 <p class="wort">{{ question }}</p>
                 <form method="post">
                     {% csrf_token %}
-                    <!-- Spezielle Klasse für den orangenen Button -->
                     <button type="submit" class="karten-button-orange">Ich weiß es!</button>
                 </form>
             </div>
-        
-            <!-- Rückseite -->
             {% else %}
             <div class="karte karte-rueckseite">
                 <p><strong>{{ question }} heißt:</strong></p>
                 <p class="wort">{{ answer }}</p>
                 <a href="{% url 'vokabel_uebung' mode %}" class="btn btn-secondary">Weiter</a>
             </div>
-          
             {% endif %}
         </div>
         {% endif %}
-
+        
         <a href="{% url 'wort_satz_liste' %}" class="btn btn-secondary zurück-button">Zurück zur Liste</a>
     </div>
-
-    <script>
-        function flipCard() {
-            document.querySelector('.karte').classList.toggle('karte-gedreht');
-        }
-    </script>
 </body>
 </html>
