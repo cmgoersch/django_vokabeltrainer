@@ -2,6 +2,7 @@
 
 ## Beschreibung
 
+
 Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, Wörter und Sätze in zwei Sprachen (Deutsch und Finnisch) hinzuzufügen, zu bearbeiten und zu üben. Zusätzlich wird die DeepL API genutzt, um Übersetzungsvorschläge für die Eingabe von deutschen Wörtern zu erhalten.
 
 ## Features
@@ -22,3 +23,13 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 ## Start in VS Code
 
     •	Python3 manage.py runserver
+# Demo Screenshots
+
+### Vokabel Übungsmodus
+<img src="static/demo_karte.png" alt="Demo Karte" width="300"/>
+
+### Startseite
+<img src="static/demo_startseite.png" alt="Demo Startseite" width="300"/>
+
+### Eingabefeld
+<img src="static/demo_wort.png" alt="Demo Wort" width="300"/>
