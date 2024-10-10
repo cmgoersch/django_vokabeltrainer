@@ -10,6 +10,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    
 }
 
 /* Header */
@@ -27,14 +28,32 @@ h1 {
 
 /* Container für den Inhalt der Seite */
 .container {
+    position: relative; /* Setzt den Kontext für das Pseudo-Element */
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* Halbtransparentes Weiß */
     border-radius: 0 0 5px 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    z-index: 1; /* Inhalt der Box bleibt über dem Pseudo-Element */
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/static/images/container-background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Transparenz von 50 % für das Bild */
+    z-index: -1; /* Pseudo-Element hinter den Inhalt setzen */
+    border-radius: 0 0 5px 5px; /* Gleiche Rundung wie die Box */
 }
 
 .button-container {
@@ -64,7 +83,7 @@ li {
     align-items: center;
     flex-wrap: wrap; /* Responsives Design */
     transition: transform 0.2s;
-    border-left: 4px solid #10454F; /* Grüne Linie am Rand */
+    border-left: 4px solid #2ED9C3; /* Grüne Linie am Rand */
 }
 
 li:hover {
@@ -86,7 +105,7 @@ li:hover {
     background-color: #f9f9f9;
     padding: 10px;
     margin-top: 10px;
-    border-left: 3px solid #10454F;
+    border-left: 3px solid #2ED9C3;
     font-style: italic;
     width: 100%;
     box-sizing: border-box;
@@ -97,7 +116,7 @@ li:hover {
 a {
     display: inline-block;
     text-decoration: none;
-    background-color: #10454F;
+    background-color: #2ED9C3;
     color: white;
     font-size: 16px;
     border-radius: 5px;
@@ -111,8 +130,8 @@ a:hover {
 }
 
 .btn-danger {
-    background-color: #A3AB78;
-    color: white;
+    background-color: #FFF4D2;
+    color: #4A4A4A;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -174,8 +193,8 @@ button:hover {
     margin-left: 5px;
     margin-right: 5PX;
     margin-bottom: 20px;
-    background-color: #BDE038;
-    color: white;
+    background-color: #FFF4D2;
+    color: #4A4A4A;
     border: none;
     border-radius: 5px;
     cursor: pointer;

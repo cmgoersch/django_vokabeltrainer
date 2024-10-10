@@ -43,30 +43,30 @@ button {
     margin-top: 15px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: #2ED9C3;
     color: white;
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #167D79;
 }
 
 .btn-primary {
-    background-color: #28a745;
+    background-color: #2ED9C3;
     margin-top: 15px;
 }
 
 .btn-secondary {
-    background-color: #4CAF50;
+    background-color: #2ED9C3;
     color: white;
     border: none;
     margin-top: 15px;
 }
 
 .btn-secondary:hover {
-    background-color: #45a049;
+    background-color: #167D79;
 }
 
 #use-translation {
