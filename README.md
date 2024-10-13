@@ -34,3 +34,14 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 ### Eingabefeld
 <img src="static/demo_wort.png" alt="Demo Wort" width="300"/>
 
+## Geplante Features
+
+- Beim Vokabeltrainer Wörter selber eingeben als Antwort
+
+- Multiple choice
+
+- Listen gruppieren
+
+- Verben - Konjugieren - Verb typen (im Finnischen gibt es 6 und 3 irreguläre)
+
+- Login für mehrere Benutzer
