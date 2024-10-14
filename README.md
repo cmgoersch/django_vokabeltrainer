@@ -37,11 +37,7 @@ Dieses Projekt ist ein einfacher Vokabeltrainer, der es Benutzern ermöglicht, W
 ## Geplante Features
 
 - Beim Vokabeltrainer Wörter selber eingeben als Antwort
-
 - Multiple choice
-
 - Listen gruppieren
-
 - Verben - Konjugieren - Verb typen (im Finnischen gibt es 6 und 3 irreguläre)
-
 - Login für mehrere Benutzer
