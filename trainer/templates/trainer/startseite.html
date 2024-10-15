@@ -21,5 +21,36 @@
             <p>Sie sind nicht eingeloggt. <a href="{% url 'login' %}">Login</a></p>
         {% endif %}
     </div>
+
+    <h2>Registrieren</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Konto erstellen</button>
+    </form>
+
+    <h2>Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Benutzername:</label>
+        <input type="text" name="username" required>
+    
+        <label for="password">Passwort:</label>
+        <input type="password" name="password" required>
+    
+        <button type="submit">Anmelden</button>
+    </form>
+    
+    <p>Noch kein Konto? <a href="{% url 'register' %}">Konto erstellen</a></p>
+
+    <h1>Willkommen {{ user.username }}</h1>
+<p>Du bist angemeldet!</p>
+
+<a href="{% url 'logout' %}">Abmelden</a>
+
+<h2>Deine Wörter und Sätze</h2>
+<a href="{% url 'wort_hinzufuegen' %}">Neues Wort hinzufügen</a>
+<a href="{% url 'satz_hinzufuegen' %}">Neuen Satz hinzufügen</a>
+
 </body>
 </html>
