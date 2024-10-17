@@ -44,7 +44,7 @@ button,
     cursor: pointer;
     display: inline-block;
     width: auto;
-    max-width: 200px; /* Maximalbreite für die Buttons */
+    max-width: 200px; 
     text-align: center;
 }
 

@@ -13,7 +13,6 @@ body {
     
 }
 
-/* Header */
 h1 {
     color: #10454F;
     padding: 20px;
@@ -23,21 +22,19 @@ h1 {
     box-sizing: border-box;
     max-width: 1000px;
     margin: 0 auto;
-   
 }
 
-/* Container für den Inhalt der Seite */
 .container {
-    position: relative; /* Setzt den Kontext für das Pseudo-Element */
+    position: relative; 
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Halbtransparentes Weiß */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 0 0 5px 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    z-index: 1; /* Inhalt der Box bleibt über dem Pseudo-Element */
+    z-index: 1; 
 }
 
 .container::before {
@@ -51,9 +48,9 @@ h1 {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.5; /* Transparenz von 50 % für das Bild */
-    z-index: -1; /* Pseudo-Element hinter den Inhalt setzen */
-    border-radius: 0 0 5px 5px; /* Gleiche Rundung wie die Box */
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: 0 0 5px 5px; 
 }
 
 .button-container {
@@ -62,11 +59,9 @@ h1 {
     margin: 20px;
 }
 
-
-
-/* Liste der Wörter und Sätze */
+/* Liste mit Woertern */
 ul {
-    list-style-type: none; /* Entfernt die Aufzählungszeichen */
+    list-style-type: none; 
     padding: 0;
     margin: 0;
 }
@@ -83,7 +78,7 @@ li {
     align-items: center;
     flex-wrap: wrap; /* Responsives Design */
     transition: transform 0.2s;
-    border-left: 4px solid #2ED9C3; /* Grüne Linie am Rand */
+    border-left: 4px solid #2ED9C3; 
 }
 
 li:hover {
